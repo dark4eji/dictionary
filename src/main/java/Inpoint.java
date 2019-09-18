@@ -4,7 +4,7 @@ public class Inpoint {
                 "root",
                 "1234");
         Operator operator = new Operator(connector.getConnector());
-        operator.changeWord("dog", "male");
+        operator.getRUWord("собака");
         connector.close();
     }
 }
