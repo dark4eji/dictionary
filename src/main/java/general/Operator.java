@@ -1,3 +1,5 @@
+package general;
+
 import java.sql.*;
 
 public class Operator {
@@ -8,10 +10,10 @@ public class Operator {
     }
 
     public void getENWord(String table, String enWord) {
-        String sql = "SELECT * FROM " + table
-                + " WHERE en_word = "
-                + "'" + enWord + "'";
+
+        String sql = "SELECT * FROM words WHERE translation LIKE '%" + enWord + "%'";
         printWords(sql);
+
     }
 
     public void getRUWord(String ruWord) {
@@ -70,16 +72,16 @@ public class Operator {
     }
 
     public void addWord(String table, String word, String transcr, String transl) {
-            String sql = "INSERT INTO " + table + " (en_word, transcription, translation)"
-                    + " VALUES ('"
-                    + word
-                    + "', '"
-                    + transcr
-                    + "', '"
-                    + transl
-                    + "')";
-            //System.out.println(sql);
-            executeUpdate(sql);
+        String sql = "INSERT INTO " + table + " (en_word, transcription, translation)"
+                + " VALUES ('"
+                + word
+                + "', '"
+                + transcr
+                + "', '"
+                + transl
+                + "')";
+        //System.out.println(sql);
+        executeUpdate(sql);
     }
 
     public void addWord(String table, String word, String transcr) {
@@ -113,7 +115,7 @@ public class Operator {
             int columnsNumber = rsmd.getColumnCount();
 
             while (rs.next()) {
-                for(int i = 2; i < columnsNumber; i++)
+                for (int i = 2; i < columnsNumber; i++)
                     System.out.print(rs.getString(i) + " ");
                 System.out.println();
             }
